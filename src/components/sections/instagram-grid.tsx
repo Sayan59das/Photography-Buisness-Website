@@ -16,8 +16,8 @@ const instagramPhotos = [
 
 export function InstagramGrid() {
   return (
-    <section className="py-20 md:py-28 bg-background relative overflow-hidden">
-      <div className="container mx-auto px-4 md:px-6">
+    <section className="py-24 md:py-32 bg-background relative overflow-hidden">
+      <div className="container mx-auto px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -28,7 +28,7 @@ export function InstagramGrid() {
           <p className="text-xs font-medium tracking-[0.3em] uppercase text-primary mb-4">
             Follow Along
           </p>
-          <h2 className="font-heading text-3xl md:text-5xl font-bold mb-3">
+          <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-3">
             <a
               href="https://instagram.com"
               target="_blank"

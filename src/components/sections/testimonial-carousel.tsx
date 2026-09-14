@@ -95,7 +95,7 @@ export function TestimonialCarousel() {
   }
 
   return (
-    <section className="py-28 md:py-36 bg-muted/20 overflow-hidden relative">
+    <section className="py-24 md:py-32 bg-muted/20 overflow-hidden relative">
       {/* Decorative quote marks */}
       <div className="absolute top-20 left-10 text-[200px] font-heading text-primary/[0.03] leading-none pointer-events-none select-none">
         &ldquo;
@@ -104,7 +104,7 @@ export function TestimonialCarousel() {
         &ldquo;
       </div>
 
-      <div className="container mx-auto px-4 md:px-6 relative z-10">
+      <div className="container mx-auto px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -115,7 +115,7 @@ export function TestimonialCarousel() {
           <p className="text-xs font-medium tracking-[0.3em] uppercase text-primary mb-4">
             Testimonials
           </p>
-          <h2 className="font-heading text-4xl md:text-6xl font-bold mb-4">
+          <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
             Kind <span className="italic">Words</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">

@@ -57,14 +57,13 @@ const featuredShoots = [
   },
 ]
 
-// Asymmetric layout: varied heights for visual interest
 const gridStyles = [
   "md:col-span-2 md:row-span-2 aspect-[4/5]",
-  "aspect-[3/4]",
-  "aspect-[3/4]",
-  "aspect-[3/4]",
-  "aspect-[3/4]",
-  "md:col-span-2 aspect-[16/9]",
+  "aspect-[4/5]",
+  "aspect-[4/5]",
+  "aspect-[4/5]",
+  "aspect-[4/5]",
+  "md:col-span-2 lg:col-span-1 md:aspect-[21/9] lg:aspect-[4/5] aspect-[4/5]",
 ]
 
 function ShootCard({
@@ -146,11 +145,11 @@ function ShootCard({
 
 export function FeaturedWork() {
   return (
-    <section className="py-28 md:py-36 bg-background relative overflow-hidden">
+    <section className="py-24 md:py-32 bg-background relative overflow-hidden">
       {/* Background accent */}
       <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-bl from-primary/[0.03] to-transparent pointer-events-none" />
 
-      <div className="container mx-auto px-4 md:px-6">
+      <div className="container mx-auto px-6 lg:px-8">
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 md:mb-20 gap-6">
           <motion.div
@@ -162,7 +161,7 @@ export function FeaturedWork() {
             <p className="text-xs font-medium tracking-[0.3em] uppercase text-primary mb-4">
               Portfolio
             </p>
-            <h2 className="font-heading text-4xl md:text-6xl lg:text-7xl font-bold mb-4 leading-[1.05]">
+            <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-[1.05]">
               Selected<br />
               <span className="italic">Works</span>
             </h2>
@@ -194,7 +193,7 @@ export function FeaturedWork() {
         </div>
 
         {/* Asymmetric Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
           {featuredShoots.map((shoot, i) => (
             <ShootCard
               key={shoot.id}

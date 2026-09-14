@@ -116,14 +116,14 @@ function BokehParticles() {
 
 export function ServicesTeaser() {
   return (
-    <section className="py-28 md:py-36 relative overflow-hidden">
+    <section className="py-24 md:py-32 relative overflow-hidden">
       {/* Radial gradient background */}
       <div className="absolute inset-0 bg-gradient-to-b from-muted/30 via-background to-muted/30 pointer-events-none" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/[0.03] rounded-full blur-3xl pointer-events-none" />
 
       <BokehParticles />
 
-      <div className="container mx-auto px-4 md:px-6 text-center relative z-10">
+      <div className="container mx-auto px-6 lg:px-8 text-center relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -134,7 +134,7 @@ export function ServicesTeaser() {
           <p className="text-xs font-medium tracking-[0.3em] uppercase text-primary mb-4">
             Services & Pricing
           </p>
-          <h2 className="font-heading text-4xl md:text-6xl font-bold mb-5">
+          <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-5">
             Invest in <span className="italic">Memories</span>
           </h2>
           <p className="text-muted-foreground text-lg">

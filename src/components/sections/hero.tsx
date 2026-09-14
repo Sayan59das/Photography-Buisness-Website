@@ -159,7 +159,7 @@ export function Hero() {
       {/* Content */}
       <motion.div
         style={{ y, opacity }}
-        className="relative z-10 container mx-auto px-4 h-full flex flex-col items-center justify-center text-center text-white"
+        className="relative z-10 container mx-auto px-6 lg:px-8 h-full flex flex-col items-center justify-center text-center text-white"
       >
         {/* Eyebrow */}
         <motion.p
@@ -238,7 +238,7 @@ export function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 2 }}
-          className="absolute bottom-28 left-1/2 -translate-x-1/2 flex items-center gap-8 md:gap-16"
+          className="mt-16 flex items-center gap-8 md:gap-16"
         >
           {stats.map((stat, i) => (
             <React.Fragment key={stat.label}>

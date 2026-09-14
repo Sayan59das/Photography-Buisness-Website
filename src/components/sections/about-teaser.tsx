@@ -15,12 +15,12 @@ export function AboutTeaser() {
   const imgY = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"])
 
   return (
-    <section ref={ref} className="py-28 md:py-36 bg-background relative overflow-hidden">
+    <section ref={ref} className="py-24 md:py-32 bg-background relative overflow-hidden">
       {/* Subtle accent line */}
       <div className="absolute top-0 left-1/2 w-px h-24 bg-gradient-to-b from-transparent via-primary/20 to-transparent" />
 
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div className="container mx-auto px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           {/* Image */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
@@ -47,7 +47,7 @@ export function AboutTeaser() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.4, duration: 0.6 }}
-              className="absolute -bottom-6 -right-4 md:right-[-2rem] glass rounded-2xl px-6 py-5 shadow-xl max-w-[220px]"
+              className="absolute -bottom-6 right-4 lg:-right-8 glass rounded-2xl px-6 py-5 shadow-xl max-w-[220px]"
             >
               <p className="text-3xl font-heading font-bold text-primary">10+</p>
               <p className="text-sm text-muted-foreground mt-1">
