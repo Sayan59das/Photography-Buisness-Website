@@ -116,7 +116,7 @@ export function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative h-screen w-full overflow-hidden -mt-20"
+      className="relative min-h-[100svh] flex w-full overflow-hidden -mt-20"
     >
       {/* Background Images with crossfade */}
       {heroImages.map((src, i) => (
@@ -159,7 +159,7 @@ export function Hero() {
       {/* Content */}
       <motion.div
         style={{ y, opacity }}
-        className="relative z-10 container mx-auto px-6 lg:px-8 h-full flex flex-col items-center justify-center text-center text-white"
+        className="relative z-10 container mx-auto px-6 lg:px-8 w-full flex flex-col items-center justify-center text-center text-white pt-32 pb-32"
       >
         {/* Eyebrow */}
         <motion.p
@@ -260,6 +260,7 @@ export function Hero() {
 
       {/* Scroll indicator */}
       <motion.div
+        style={{ opacity }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2.5 }}

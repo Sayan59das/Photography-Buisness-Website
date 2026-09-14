@@ -68,7 +68,10 @@ export function Navbar() {
         {/* Logo */}
         <Link
           href="/"
-          className="font-heading font-bold text-xl md:text-2xl tracking-tight z-50 group"
+          className={cn(
+            "font-heading font-bold text-xl md:text-2xl tracking-tight z-50 group",
+            !isScrolled ? "text-white" : "text-foreground"
+          )}
         >
           <span className="transition-colors group-hover:text-primary">STUDIO</span>
           <span className="text-primary">.</span>
@@ -81,11 +84,12 @@ export function Navbar() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className={`nav-link-underline transition-colors py-1 ${
+                  className={cn(
+                    "nav-link-underline transition-colors py-1",
                     pathname === link.href
-                      ? "text-foreground active"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
+                      ? (!isScrolled ? "text-white active" : "text-foreground active")
+                      : (!isScrolled ? "text-white/80 hover:text-white" : "text-muted-foreground hover:text-foreground")
+                  )}
                 >
                   {link.label}
                 </Link>
@@ -94,7 +98,9 @@ export function Navbar() {
           </ul>
 
           <div className="flex items-center gap-4">
-            <ThemeToggle />
+            <div className={cn(!isScrolled && "text-white [&_button]:text-white [&_button:hover]:bg-white/10")}>
+              <ThemeToggle />
+            </div>
             <Link
               href="/contact"
               className={cn(
@@ -108,7 +114,7 @@ export function Navbar() {
         </nav>
 
         {/* Mobile Toggle */}
-        <div className="flex items-center gap-3 lg:hidden z-50">
+        <div className={cn("flex items-center gap-3 lg:hidden z-50", !isScrolled && "text-white [&_button]:text-white [&_button:hover]:bg-white/10")}>
           <ThemeToggle />
           <Button
             variant="ghost"
