@@ -31,6 +31,25 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${playfairDisplay.variable} ${inter.variable} h-full antialiased`}
       suppressHydrationWarning
     >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                let theme = localStorage.getItem('theme');
+                if (!theme) {
+                  theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                }
+                if (theme === 'dark') {
+                  document.documentElement.classList.add('dark');
+                } else {
+                  document.documentElement.classList.remove('dark');
+                }
+              } catch (e) {}
+            `,
+          }}
+        />
+      </head>
       <body className="min-h-full flex flex-col">
         <ThemeProvider
           attribute="class"
