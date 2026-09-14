@@ -147,14 +147,6 @@ export function Hero() {
       {/* Floating particles */}
       <FloatingParticles />
 
-      {/* Gold accent line */}
-      <motion.div
-        className="absolute top-1/2 left-0 h-px z-[2] opacity-30"
-        style={{ background: "linear-gradient(90deg, transparent, var(--gold), transparent)" }}
-        initial={{ width: 0 }}
-        animate={{ width: "100%" }}
-        transition={{ duration: 2, delay: 1.2, ease: "easeOut" }}
-      />
 
       {/* Content */}
       <motion.div
