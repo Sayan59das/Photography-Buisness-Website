@@ -61,6 +61,14 @@ function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
 }
 
 function FloatingParticles() {
+  const [mounted, setMounted] = React.useState(false)
+
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) return null
+
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none z-[1]">
       {Array.from({ length: 20 }).map((_, i) => (
