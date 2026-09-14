@@ -1,6 +1,9 @@
+"use client"
+
 import * as React from "react"
 import Link from "next/link"
 import Image from "next/image"
+import { useSearchParams, useRouter } from "next/navigation"
 
 const portfolioCategories = ["All", "Wedding", "Pre-Wedding", "Maternity", "Commercial"]
 
@@ -55,6 +58,86 @@ const portfolioShoots = [
   },
 ]
 
+function PortfolioContent() {
+  const searchParams = useSearchParams()
+  const router = useRouter()
+  
+  // Read category from URL, default to "All"
+  const currentCategory = searchParams.get("category")?.toLowerCase() || "all"
+
+  // Filter the shoots
+  const filteredShoots = portfolioShoots.filter(shoot => {
+    if (currentCategory === "all") return true
+    return shoot.category.toLowerCase() === currentCategory
+  })
+
+  return (
+    <>
+      {/* Categories */}
+      <div className="flex flex-wrap justify-center gap-4 px-6 mb-16">
+        {portfolioCategories.map((cat) => {
+          const isActive = currentCategory === cat.toLowerCase()
+          return (
+            <button
+              key={cat}
+              onClick={() => {
+                if (cat.toLowerCase() === "all") {
+                  router.push("/portfolio", { scroll: false })
+                } else {
+                  router.push(`/portfolio?category=${cat.toLowerCase()}`, { scroll: false })
+                }
+              }}
+              className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
+                isActive
+                  ? "bg-primary text-white shadow-md shadow-primary/20"
+                  : "bg-muted text-muted-foreground hover:bg-primary/10 hover:text-primary"
+              }`}
+            >
+              {cat}
+            </button>
+          )
+        })}
+      </div>
+
+      {/* Grid */}
+      <section className="px-6 lg:px-8 pb-32 max-w-[1400px] mx-auto min-h-[500px]">
+        {filteredShoots.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 auto-rows-[300px] md:auto-rows-[400px]">
+            {filteredShoots.map((shoot) => (
+              <Link
+                key={shoot.id}
+                href={shoot.href}
+                className={`group relative overflow-hidden rounded-2xl ${shoot.colSpan}`}
+              >
+                <Image
+                  src={shoot.image}
+                  alt={shoot.title}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-90" />
+                <div className="absolute bottom-0 left-0 right-0 p-8 z-10 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                  <span className="inline-block px-3 py-1 rounded-full text-[10px] font-semibold tracking-[0.15em] uppercase mb-3 bg-white/20 backdrop-blur-md text-white border border-white/20">
+                    {shoot.category}
+                  </span>
+                  <h3 className="font-heading text-3xl font-bold text-white">
+                    {shoot.title}
+                  </h3>
+                </div>
+              </Link>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center text-muted-foreground py-20">
+            No projects found for {currentCategory}.
+          </div>
+        )}
+      </section>
+    </>
+  )
+}
+
 export default function PortfolioPage() {
   return (
     <div className="min-h-screen bg-background pt-16">
@@ -71,51 +154,9 @@ export default function PortfolioPage() {
         </p>
       </section>
 
-      {/* Categories */}
-      <div className="flex flex-wrap justify-center gap-4 px-6 mb-16">
-        {portfolioCategories.map((cat, i) => (
-          <button
-            key={cat}
-            className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
-              i === 0
-                ? "bg-primary text-white shadow-md shadow-primary/20"
-                : "bg-muted text-muted-foreground hover:bg-primary/10 hover:text-primary"
-            }`}
-          >
-            {cat}
-          </button>
-        ))}
-      </div>
-
-      {/* Grid */}
-      <section className="px-6 lg:px-8 pb-32 max-w-[1400px] mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 auto-rows-[300px] md:auto-rows-[400px]">
-          {portfolioShoots.map((shoot) => (
-            <Link
-              key={shoot.id}
-              href={shoot.href}
-              className={`group relative overflow-hidden rounded-2xl ${shoot.colSpan}`}
-            >
-              <Image
-                src={shoot.image}
-                alt={shoot.title}
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-90" />
-              <div className="absolute bottom-0 left-0 right-0 p-8 z-10 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                <span className="inline-block px-3 py-1 rounded-full text-[10px] font-semibold tracking-[0.15em] uppercase mb-3 bg-white/20 backdrop-blur-md text-white border border-white/20">
-                  {shoot.category}
-                </span>
-                <h3 className="font-heading text-3xl font-bold text-white">
-                  {shoot.title}
-                </h3>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
+      <React.Suspense fallback={<div className="min-h-[500px] flex justify-center py-20 text-muted-foreground">Loading portfolio...</div>}>
+        <PortfolioContent />
+      </React.Suspense>
     </div>
   )
 }
