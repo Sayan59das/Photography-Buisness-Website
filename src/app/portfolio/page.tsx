@@ -5,7 +5,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { useSearchParams, useRouter } from "next/navigation"
 
-const portfolioCategories = ["All", "Wedding", "Pre-Wedding", "Maternity", "Commercial"]
+const portfolioCategories = ["All", "Wedding", "Pre-Wedding", "Birthdays", "Ring-Ceremony"]
 
 const portfolioShoots = [
   {
