@@ -106,18 +106,18 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/portfolio?category=maternity"
+                  href="/portfolio?category=birthdays"
                   className="hover:text-[#C9A24B] transition-colors"
                 >
-                  Maternity
+                  Birthdays
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/portfolio?category=commercial"
+                  href="/portfolio?category=ring-ceremony"
                   className="hover:text-[#C9A24B] transition-colors"
                 >
-                  Commercial
+                  Ring Ceremony
                 </Link>
               </li>
             </ul>

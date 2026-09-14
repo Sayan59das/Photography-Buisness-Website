@@ -26,10 +26,10 @@ const portfolioShoots = [
   },
   {
     id: 3,
-    title: "Vogue Editorial",
-    category: "Commercial",
-    image: "https://images.unsplash.com/photo-1532453288672-3a27e9be9efd?q=80&w=1964&auto=format&fit=crop",
-    href: "/portfolio/vogue",
+    title: "Sweet Sixteen",
+    category: "Birthdays",
+    image: "https://images.unsplash.com/photo-1530103862676-de8892b12a15?q=80&w=2070&auto=format&fit=crop",
+    href: "/portfolio/sweet-sixteen",
     colSpan: "md:col-span-1 md:row-span-1",
   },
   {
@@ -42,10 +42,10 @@ const portfolioShoots = [
   },
   {
     id: 5,
-    title: "Midnight Bloom",
-    category: "Maternity",
-    image: "https://images.unsplash.com/photo-1544078751-58fee2d8a03b?q=80&w=2070&auto=format&fit=crop",
-    href: "/portfolio/midnight-bloom",
+    title: "Diamond Exchange",
+    category: "Ring-Ceremony",
+    image: "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=2070&auto=format&fit=crop",
+    href: "/portfolio/ring-ceremony",
     colSpan: "md:col-span-1 md:row-span-1",
   },
   {
