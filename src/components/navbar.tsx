@@ -86,7 +86,7 @@ export function Navbar() {
                   href={link.href}
                   className={cn(
                     "nav-link-underline transition-colors py-1",
-                    pathname === link.href
+                    (link.href === "/" ? pathname === "/" : pathname.startsWith(link.href))
                       ? (!isScrolled ? "text-white active" : "text-foreground active")
                       : (!isScrolled ? "text-white/80 hover:text-white" : "text-muted-foreground hover:text-foreground")
                   )}
@@ -178,7 +178,7 @@ export function Navbar() {
                     <Link
                       href={link.href}
                       className={`font-heading text-3xl md:text-4xl font-bold transition-colors hover:text-primary ${
-                        pathname === link.href
+                        (link.href === "/" ? pathname === "/" : pathname.startsWith(link.href))
                           ? "text-primary"
                           : "text-foreground"
                       }`}

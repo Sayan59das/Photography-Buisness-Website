@@ -78,15 +78,10 @@ function PortfolioContent() {
         {portfolioCategories.map((cat) => {
           const isActive = currentCategory === cat.toLowerCase()
           return (
-            <button
+            <Link
               key={cat}
-              onClick={() => {
-                if (cat.toLowerCase() === "all") {
-                  router.push("/portfolio", { scroll: false })
-                } else {
-                  router.push(`/portfolio?category=${cat.toLowerCase()}`, { scroll: false })
-                }
-              }}
+              href={cat.toLowerCase() === "all" ? "/portfolio" : `/portfolio?category=${cat.toLowerCase()}`}
+              scroll={false}
               className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
                 isActive
                   ? "bg-primary text-white shadow-md shadow-primary/20"
@@ -94,7 +89,7 @@ function PortfolioContent() {
               }`}
             >
               {cat}
-            </button>
+            </Link>
           )
         })}
       </div>
