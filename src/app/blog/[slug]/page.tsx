@@ -27,6 +27,12 @@ const post = {
   `
 }
 
+export async function generateStaticParams() {
+  return [
+    { slug: '10-locations-in-italy' }
+  ]
+}
+
 export default function BlogPostPage({ params }: { params: { slug: string } }) {
   // In a real app, fetch the post based on params.slug
 

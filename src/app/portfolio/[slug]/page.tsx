@@ -21,6 +21,18 @@ const shootDetails = {
   ]
 }
 
+export async function generateStaticParams() {
+  return [
+    { slug: 'aura-james' },
+    { slug: 'golden-hour' },
+    { slug: 'sweet-sixteen' },
+    { slug: 'estate-wedding' },
+    { slug: 'ring-ceremony' },
+    { slug: 'tuscany-dreams' },
+    { slug: 'vogue' }
+  ]
+}
+
 export default async function PortfolioDetailPage({ params }: { params: { slug: string } }) {
   // In a real app, fetch the shoot details using params.slug from Prisma here
   
