@@ -2,9 +2,10 @@
 
 import * as React from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
-import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
+import { siteConfig } from "@/lib/site-config"
+import { FadeImage } from "@/components/fade-image"
 
 export function AboutTeaser() {
   const ref = React.useRef<HTMLElement>(null)
@@ -31,7 +32,7 @@ export function AboutTeaser() {
           >
             <div className="relative aspect-[3/4] rounded-3xl overflow-hidden">
               <motion.div className="absolute inset-[-10%]" style={{ y: imgY }}>
-                <Image
+                <FadeImage
                   src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?q=80&w=2070&auto=format&fit=crop"
                   alt="The photographer"
                   fill
@@ -90,10 +91,10 @@ export function AboutTeaser() {
 
             {/* Signature */}
             <div className="mb-8">
-              <p className="font-heading text-2xl italic text-foreground/80">
-                Shubham
+              <p className="font-script text-4xl text-primary leading-none">
+                {siteConfig.founder}
               </p>
-              <p className="text-sm text-muted-foreground mt-1">
+              <p className="text-sm text-muted-foreground mt-2">
                 Founder & Lead Photographer
               </p>
             </div>

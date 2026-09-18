@@ -4,9 +4,10 @@ import * as React from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { buttonVariants } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import Link from "next/link"
 import Image from "next/image"
+import Link from "next/link"
 import { ChevronDown } from "lucide-react"
+import { useIsClient } from "@/lib/use-is-client"
 
 const heroImages = [
   "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop",
@@ -60,40 +61,51 @@ function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
   )
 }
 
+function generateParticles(count: number) {
+  return Array.from({ length: count }).map(() => ({
+    width: Math.random() * 6 + 2,
+    height: Math.random() * 6 + 2,
+    left: Math.random() * 100,
+    top: Math.random() * 100,
+    opacity: Math.random() * 0.4 + 0.1,
+    riseBy: Math.random() * 100 + 50,
+    driftBy: (Math.random() - 0.5) * 60,
+    duration: Math.random() * 6 + 4,
+    delay: Math.random() * 4,
+  }))
+}
+
 function FloatingParticles() {
-  const [mounted, setMounted] = React.useState(false)
+  const isClient = useIsClient()
+  // Computed once per mount; only rendered after hydration so the random
+  // values never mismatch between the server-rendered and client markup.
+  const [particles] = React.useState(() => generateParticles(20))
 
-  React.useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  if (!mounted) return null
+  if (!isClient) return null
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none z-[1]">
-      {Array.from({ length: 20 }).map((_, i) => (
+      {particles.map((p, i) => (
         <motion.div
           key={i}
           className="absolute rounded-full"
           style={{
-            width: Math.random() * 6 + 2,
-            height: Math.random() * 6 + 2,
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            background: `radial-gradient(circle, rgba(201, 162, 75, ${
-              Math.random() * 0.4 + 0.1
-            }), transparent)`,
+            width: p.width,
+            height: p.height,
+            left: `${p.left}%`,
+            top: `${p.top}%`,
+            background: `radial-gradient(circle, rgba(201, 162, 75, ${p.opacity}), transparent)`,
           }}
           animate={{
-            y: [0, -(Math.random() * 100 + 50)],
-            x: [0, (Math.random() - 0.5) * 60],
+            y: [0, -p.riseBy],
+            x: [0, p.driftBy],
             opacity: [0, 1, 0],
             scale: [0.5, 1.5, 0.5],
           }}
           transition={{
-            duration: Math.random() * 6 + 4,
+            duration: p.duration,
             repeat: Infinity,
-            delay: Math.random() * 4,
+            delay: p.delay,
             ease: "easeInOut",
           }}
         />

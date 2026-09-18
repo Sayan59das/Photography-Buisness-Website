@@ -9,6 +9,7 @@ import { Menu, X } from "lucide-react"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { siteConfig } from "@/lib/site-config"
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -37,10 +38,13 @@ export function Navbar() {
     setIsScrolled(latest > 50)
   })
 
-  // Close mobile menu on route change
-  React.useEffect(() => {
+  // Close the mobile menu on route change (adjusting state during render,
+  // rather than in an effect, avoids an extra post-navigation render pass).
+  const [prevPathname, setPrevPathname] = React.useState(pathname)
+  if (pathname !== prevPathname) {
+    setPrevPathname(pathname)
     setIsOpen(false)
-  }, [pathname])
+  }
 
   // Prevent scroll when mobile menu is open
   React.useEffect(() => {
@@ -73,8 +77,9 @@ export function Navbar() {
             !isScrolled ? "text-white" : "text-foreground"
           )}
         >
-          <span className="transition-colors group-hover:text-primary">STUDIO</span>
-          <span className="text-primary">.</span>
+          <span className="transition-colors group-hover:text-primary">{siteConfig.shortName}</span>
+          <span className="text-primary hidden sm:inline"> Photography</span>
+          <span className="text-primary sm:hidden">.</span>
         </Link>
 
         {/* Desktop Nav */}

@@ -3,12 +3,14 @@
 import * as React from "react"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { Camera, Mail, MapPin, Phone, Play, Heart } from "lucide-react"
+import { Mail, MapPin, Phone } from "lucide-react"
+import { siteConfig } from "@/lib/site-config"
+import { InstagramIcon, YoutubeIcon, FacebookIcon } from "@/components/icons/social-icons"
 
 const socialLinks = [
-  { icon: Camera, href: "https://instagram.com", label: "Instagram" },
-  { icon: Play, href: "https://youtube.com", label: "YouTube" },
-  { icon: Heart, href: "https://facebook.com", label: "Facebook" },
+  { icon: InstagramIcon, href: siteConfig.social.instagram, label: "Instagram" },
+  { icon: YoutubeIcon, href: siteConfig.social.youtube, label: "YouTube" },
+  { icon: FacebookIcon, href: siteConfig.social.facebook, label: "Facebook" },
 ]
 
 export function Footer() {
@@ -74,8 +76,8 @@ export function Footer() {
               href="/"
               className="font-heading font-bold text-2xl tracking-tight mb-6 inline-block text-white"
             >
-              STUDIO
-              <span className="text-[#C9A24B]">.</span>
+              {siteConfig.shortName}
+              <span className="text-[#C9A24B]"> Photography</span>
             </Link>
             <p className="text-[#777] text-sm leading-relaxed max-w-xs">
               Capturing authentic moments and cinematic stories for modern
@@ -171,27 +173,27 @@ export function Footer() {
               <li className="flex items-start gap-3">
                 <MapPin className="h-4 w-4 text-[#C9A24B] shrink-0 mt-0.5" />
                 <span>
-                  Sector 17, Chandigarh,
+                  {siteConfig.address.line1}
                   <br />
-                  India 160017
+                  {siteConfig.address.line2}
                 </span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="h-4 w-4 text-[#C9A24B] shrink-0" />
                 <a
-                  href="tel:+919876543210"
+                  href={`tel:${siteConfig.phoneHref}`}
                   className="hover:text-[#C9A24B] transition-colors"
                 >
-                  +91 98765 43210
+                  {siteConfig.phone}
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="h-4 w-4 text-[#C9A24B] shrink-0" />
                 <a
-                  href="mailto:hello@studio.com"
+                  href={`mailto:${siteConfig.email}`}
                   className="hover:text-[#C9A24B] transition-colors"
                 >
-                  hello@studio.com
+                  {siteConfig.email}
                 </a>
               </li>
             </ul>
@@ -202,7 +204,7 @@ export function Footer() {
         <div className="h-px bg-[#222] mb-6" />
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-[#555]">
           <p>
-            &copy; {new Date().getFullYear()} Photography Studio. All rights
+            &copy; {new Date().getFullYear()} {siteConfig.name}. All rights
             reserved.
           </p>
           <div className="flex gap-6">

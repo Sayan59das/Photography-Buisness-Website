@@ -1,7 +1,10 @@
 import * as React from "react"
+import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
+import { siteConfig } from "@/lib/site-config"
+import { FadeImage } from "@/components/fade-image"
 
 // Mock data for the static generation
 const shootDetails = {
@@ -33,9 +36,17 @@ export async function generateStaticParams() {
   ]
 }
 
-export default async function PortfolioDetailPage({ params }: { params: { slug: string } }) {
-  // In a real app, fetch the shoot details using params.slug from Prisma here
-  
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: `${shootDetails.title} — ${siteConfig.name}`,
+    description: shootDetails.description,
+  }
+}
+
+export default async function PortfolioDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  // In a real app, fetch the shoot details using the slug from Prisma here
+  await params
+
   return (
     <article className="min-h-screen bg-background">
       {/* Hero Cover */}
@@ -48,7 +59,7 @@ export default async function PortfolioDetailPage({ params }: { params: { slug: 
           priority
         />
         <div className="absolute inset-0 bg-black/40" />
-        
+
         {/* Back button */}
         <div className="absolute top-24 left-6 lg:left-12 z-20">
           <Link
@@ -61,7 +72,7 @@ export default async function PortfolioDetailPage({ params }: { params: { slug: 
         </div>
 
         {/* Title Overlay */}
-        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-white p-6">
+        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-white p-6 animate-in fade-in slide-in-from-bottom-6 duration-1000">
           <span className="px-4 py-1.5 rounded-full text-xs font-semibold tracking-[0.2em] uppercase mb-6 bg-white/10 backdrop-blur-md border border-white/20">
             {shootDetails.category}
           </span>
@@ -77,7 +88,7 @@ export default async function PortfolioDetailPage({ params }: { params: { slug: 
       </section>
 
       {/* Story text */}
-      <section className="py-24 px-6 max-w-3xl mx-auto text-center">
+      <section className="py-24 px-6 max-w-3xl mx-auto text-center animate-in fade-in slide-in-from-bottom-4 duration-700">
         <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
           {shootDetails.description}
         </p>
@@ -87,8 +98,12 @@ export default async function PortfolioDetailPage({ params }: { params: { slug: 
       <section className="px-4 md:px-6 lg:px-8 pb-32 max-w-[1600px] mx-auto">
         <div className="columns-1 md:columns-2 lg:columns-3 gap-4 md:gap-6 space-y-4 md:space-y-6">
           {shootDetails.gallery.map((src, i) => (
-            <div key={i} className="relative w-full break-inside-avoid rounded-xl overflow-hidden group">
-              <Image
+            <div
+              key={i}
+              className="relative w-full break-inside-avoid rounded-xl overflow-hidden group animate-in fade-in duration-700"
+              style={{ animationDelay: `${i * 100}ms`, animationFillMode: "backwards" }}
+            >
+              <FadeImage
                 src={src}
                 alt={`${shootDetails.title} photo ${i + 1}`}
                 width={800}

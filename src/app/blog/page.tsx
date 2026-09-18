@@ -1,6 +1,8 @@
 import * as React from "react"
+import type { Metadata } from "next"
 import Link from "next/link"
-import Image from "next/image"
+import { siteConfig } from "@/lib/site-config"
+import { FadeImage } from "@/components/fade-image"
 
 const blogPosts = [
   {
@@ -9,7 +11,7 @@ const blogPosts = [
     category: "Guides",
     date: "Sep 12, 2023",
     image: "https://images.unsplash.com/photo-1516483638261-f40889f1d8c1?q=80&w=2070&auto=format&fit=crop",
-    href: "/blog/italy-elopement-locations",
+    href: "/blog/10-locations-in-italy",
   },
   {
     id: 2,
@@ -29,11 +31,16 @@ const blogPosts = [
   }
 ]
 
+export const metadata: Metadata = {
+  title: `Journal — ${siteConfig.name}`,
+  description: `Tips, guides, and behind-the-scenes stories from ${siteConfig.name}.`,
+}
+
 export default function BlogPage() {
   return (
     <div className="min-h-screen bg-background pt-16">
       {/* Header */}
-      <section className="py-20 md:py-32 px-6 lg:px-8 max-w-7xl mx-auto text-center">
+      <section className="py-20 md:py-32 px-6 lg:px-8 max-w-7xl mx-auto text-center animate-in fade-in slide-in-from-bottom-4 duration-700">
         <p className="text-xs font-medium tracking-[0.3em] uppercase text-primary mb-4">
           Journal
         </p>
@@ -48,10 +55,14 @@ export default function BlogPage() {
       {/* Blog Grid */}
       <section className="px-6 lg:px-8 pb-32 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
-          {blogPosts.map((post) => (
-            <article key={post.id} className="group cursor-pointer flex flex-col h-full">
+          {blogPosts.map((post, i) => (
+            <article
+              key={post.id}
+              className="group flex flex-col h-full animate-in fade-in slide-in-from-bottom-4 duration-700"
+              style={{ animationDelay: `${i * 100}ms`, animationFillMode: "backwards" }}
+            >
               <Link href={post.href} className="relative w-full aspect-[4/5] rounded-3xl overflow-hidden mb-6 block">
-                <Image
+                <FadeImage
                   src={post.image}
                   alt={post.title}
                   fill
@@ -63,7 +74,7 @@ export default function BlogPage() {
                   </span>
                 </div>
               </Link>
-              
+
               <div className="flex flex-col flex-1">
                 <p className="text-sm text-muted-foreground mb-3">{post.date}</p>
                 <Link href={post.href}>

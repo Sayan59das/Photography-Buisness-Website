@@ -2,37 +2,53 @@
 
 import * as React from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
-import Image from "next/image"
 import Link from "next/link"
 import { buttonVariants } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import { useIsClient } from "@/lib/use-is-client"
+import { FadeImage } from "@/components/fade-image"
+
+function generateBokeh(count: number) {
+  return Array.from({ length: count }).map(() => ({
+    size: Math.random() * 80 + 30,
+    left: Math.random() * 100,
+    top: Math.random() * 100,
+    opacity: Math.random() * 0.08 + 0.02,
+    riseBy: Math.random() * 60 + 20,
+    duration: Math.random() * 8 + 5,
+    delay: Math.random() * 4,
+  }))
+}
 
 function BokehOverlay() {
+  const isClient = useIsClient()
+  const [bokeh] = React.useState(() => generateBokeh(15))
+
+  if (!isClient) return null
+
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none z-[1]">
-      {Array.from({ length: 15 }).map((_, i) => (
+      {bokeh.map((b, i) => (
         <motion.div
           key={i}
           className="absolute rounded-full"
           style={{
-            width: Math.random() * 80 + 30,
-            height: Math.random() * 80 + 30,
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            background: `radial-gradient(circle, rgba(201, 162, 75, ${
-              Math.random() * 0.08 + 0.02
-            }), transparent 70%)`,
+            width: b.size,
+            height: b.size,
+            left: `${b.left}%`,
+            top: `${b.top}%`,
+            background: `radial-gradient(circle, rgba(201, 162, 75, ${b.opacity}), transparent 70%)`,
           }}
           animate={{
-            y: [0, -(Math.random() * 60 + 20)],
+            y: [0, -b.riseBy],
             opacity: [0.2, 0.6, 0.2],
             scale: [1, 1.3, 1],
           }}
           transition={{
-            duration: Math.random() * 8 + 5,
+            duration: b.duration,
             repeat: Infinity,
             ease: "easeInOut",
-            delay: Math.random() * 4,
+            delay: b.delay,
           }}
         />
       ))}
@@ -55,7 +71,7 @@ export function CtaBanner() {
     >
       {/* Parallax background */}
       <motion.div className="absolute inset-[-20%] z-0" style={{ y: bgY }}>
-        <Image
+        <FadeImage
           src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?q=80&w=2070&auto=format&fit=crop"
           alt="Wedding photography"
           fill

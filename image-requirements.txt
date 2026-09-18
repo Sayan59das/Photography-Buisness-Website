@@ -1,0 +1,45 @@
+WEBSITE PHOTO REQUIREMENTS - SHUBHAM PHOTOGRAPHY
+As of: 2026-09-18
+
+To build out the photography sections of the website, please send over the
+original, high-resolution files below. More resolution than the minimum is
+always fine - we crop and optimize everything to fit the site.
+
+WHAT TO SEND
+------------------------------------------------------------------------------
+Section                         | How many   | Orientation      | Min size
+------------------------------------------------------------------------------
+Homepage hero banner             | 3          | Landscape, wide  | 2400x1600px
+About page portrait              | 1          | Portrait (3:4)   | 1200x1600px
+Featured work / portfolio grid   | 6+         | Mostly portrait  | 2000px (short side)
+Portfolio galleries (per shoot)  | 6-10 each  | Any              | 2000px (short side)
+Client testimonial photos        | 3          | Portrait (3:4-4:5)| 1200x1500px
+Instagram feed grid              | 6          | Square (1:1)     | 1080x1080px
+Blog cover images                | 1 per post | Landscape (16:9) | 1920x1080px
+Video thumbnails / films         | ~5         | Landscape (16:9) | 1920x1080px
+------------------------------------------------------------------------------
+
+Notes:
+- Homepage hero banner: full-bleed background behind bold text - avoid key
+  details in the center where the headline sits.
+- Featured work / portfolio grid: cropped into a grid layout - extra
+  resolution gives room to crop.
+- Portfolio galleries: one full set per real wedding/shoot to feature on its
+  own page.
+- Blog cover images: also shown cropped to portrait on the blog list page.
+- Video thumbnails / films: real video files if the films are ready,
+  otherwise frame grabs are fine.
+
+FILE GUIDELINES
+- Format: JPEG or high-quality WEBP (avoid PNG for photos - larger files, no
+  real benefit)
+- Color profile: sRGB
+- Send full, uncropped originals where possible - the site crops responsively
+  per layout
+- No watermarks or text overlays
+- No hard file-size limit, but keep individual files under ~20MB
+
+HOW TO SEND THEM
+A shared Google Drive or WeTransfer folder works best, organized into
+subfolders matching the sections above (e.g. "Hero", "Portfolio - Aura &
+James", "Instagram", "Blog").

@@ -2,9 +2,9 @@
 
 import * as React from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
-import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
+import { FadeImage } from "@/components/fade-image"
 
 const featuredShoots = [
   {
@@ -97,7 +97,7 @@ function ShootCard({
 
       {/* Parallax Image */}
       <motion.div className="absolute inset-[-10%] z-0" style={{ y: imgY }}>
-        <Image
+        <FadeImage
           src={shoot.image}
           alt={shoot.title}
           fill

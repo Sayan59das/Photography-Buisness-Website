@@ -2,8 +2,9 @@
 
 import * as React from "react"
 import { motion } from "framer-motion"
-import Image from "next/image"
 import { Camera } from "lucide-react"
+import { siteConfig } from "@/lib/site-config"
+import { FadeImage } from "@/components/fade-image"
 
 const instagramPhotos = [
   "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?q=80&w=400&auto=format&fit=crop",
@@ -30,12 +31,12 @@ export function InstagramGrid() {
           </p>
           <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-3">
             <a
-              href="https://instagram.com"
+              href={siteConfig.social.instagram}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-primary transition-colors inline-flex items-center gap-3"
             >
-              @studio
+              {siteConfig.social.instagramHandle}
               <Camera className="h-6 w-6 md:h-8 md:w-8 text-primary" />
             </a>
           </h2>
@@ -48,7 +49,7 @@ export function InstagramGrid() {
           {instagramPhotos.map((src, i) => (
             <motion.a
               key={i}
-              href="https://instagram.com"
+              href={siteConfig.social.instagram}
               target="_blank"
               rel="noopener noreferrer"
               initial={{ opacity: 0, scale: 0.9 }}
@@ -61,7 +62,7 @@ export function InstagramGrid() {
               }}
               className="group relative aspect-square rounded-xl overflow-hidden"
             >
-              <Image
+              <FadeImage
                 src={src}
                 alt={`Instagram photo ${i + 1}`}
                 fill

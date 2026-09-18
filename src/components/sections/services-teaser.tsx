@@ -6,6 +6,7 @@ import Link from "next/link"
 import { buttonVariants } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { Camera, Gem, Sparkles, Star } from "lucide-react"
+import { useIsClient } from "@/lib/use-is-client"
 
 const services = [
   {
@@ -82,31 +83,46 @@ function TiltCard({
   )
 }
 
+function generateBokeh(count: number) {
+  return Array.from({ length: count }).map(() => ({
+    size: Math.random() * 60 + 20,
+    left: Math.random() * 100,
+    top: Math.random() * 100,
+    opacity: Math.random() * 0.06 + 0.02,
+    riseBy: Math.random() * 40 + 20,
+    duration: Math.random() * 6 + 4,
+    delay: Math.random() * 3,
+  }))
+}
+
 function BokehParticles() {
+  const isClient = useIsClient()
+  const [bokeh] = React.useState(() => generateBokeh(12))
+
+  if (!isClient) return null
+
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {Array.from({ length: 12 }).map((_, i) => (
+      {bokeh.map((b, i) => (
         <motion.div
           key={i}
           className="absolute rounded-full"
           style={{
-            width: Math.random() * 60 + 20,
-            height: Math.random() * 60 + 20,
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            background: `radial-gradient(circle, rgba(201, 162, 75, ${
-              Math.random() * 0.06 + 0.02
-            }), transparent 70%)`,
+            width: b.size,
+            height: b.size,
+            left: `${b.left}%`,
+            top: `${b.top}%`,
+            background: `radial-gradient(circle, rgba(201, 162, 75, ${b.opacity}), transparent 70%)`,
           }}
           animate={{
-            y: [0, -(Math.random() * 40 + 20)],
+            y: [0, -b.riseBy],
             opacity: [0.3, 0.7, 0.3],
           }}
           transition={{
-            duration: Math.random() * 6 + 4,
+            duration: b.duration,
             repeat: Infinity,
             ease: "easeInOut",
-            delay: Math.random() * 3,
+            delay: b.delay,
           }}
         />
       ))}

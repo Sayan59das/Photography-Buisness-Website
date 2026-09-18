@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+import { Playfair_Display, Inter, Parisienne } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { SmoothScroll } from "@/components/smooth-scroll";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
+import { ScrollToTop } from "@/components/scroll-to-top";
+import { PageTransition } from "@/components/page-transition";
+import { siteConfig } from "@/lib/site-config";
 import "./globals.css";
 
 const playfairDisplay = Playfair_Display({
@@ -18,17 +21,30 @@ const inter = Inter({
   display: "swap",
 });
 
+const parisienne = Parisienne({
+  variable: "--font-script",
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "Photography Studio — Cinematic Stories for Modern Romantics",
-  description:
-    "We capture the raw, authentic emotion of your most important days. Wedding photography, pre-wedding shoots, editorial, and commercial work.",
+  metadataBase: new URL(siteConfig.url),
+  title: `${siteConfig.name} — ${siteConfig.tagline}`,
+  description: siteConfig.description,
+  openGraph: {
+    title: `${siteConfig.name} — ${siteConfig.tagline}`,
+    description: siteConfig.description,
+    siteName: siteConfig.name,
+    type: "website",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
       lang="en"
-      className={`${playfairDisplay.variable} ${inter.variable} h-full antialiased`}
+      className={`${playfairDisplay.variable} ${inter.variable} ${parisienne.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <head>
@@ -60,9 +76,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <SmoothScroll>
             <Navbar />
             <main className="flex-1 pt-20">
-              {children}
+              <PageTransition>{children}</PageTransition>
             </main>
             <Footer />
+            <ScrollToTop />
           </SmoothScroll>
         </ThemeProvider>
       </body>
