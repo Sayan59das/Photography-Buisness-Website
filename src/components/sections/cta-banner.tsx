@@ -107,7 +107,7 @@ export function CtaBanner() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 max-w-4xl mx-auto leading-[1.1]"
+          className="font-heading text-h2 font-bold text-balance text-white mb-6 max-w-4xl mx-auto leading-[1.1]"
         >
           Let&rsquo;s Create Something{" "}
           <span className="italic gold-shimmer-text">Beautiful</span>

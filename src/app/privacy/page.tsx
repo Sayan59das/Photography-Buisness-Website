@@ -15,7 +15,7 @@ export default function PrivacyPage() {
 
         {/* Header */}
         <header className="mb-16 text-center">
-          <h1 className="font-heading text-4xl md:text-5xl font-bold mb-4">Privacy Policy</h1>
+          <h1 className="font-heading text-4xl md:text-5xl font-bold text-balance mb-4">Privacy Policy</h1>
           <p className="text-muted-foreground">Last updated: September 14, 2023</p>
         </header>
 

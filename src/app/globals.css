@@ -50,6 +50,18 @@
   --color-gold: var(--gold);
   --color-gold-light: var(--gold-light);
   --color-gold-dark: var(--gold-dark);
+
+  /* Fluid heading scale — smoothly interpolates between mobile and
+     laptop viewports instead of jumping at fixed breakpoints, so
+     headings sit at their ideal size everywhere in between too. */
+  --text-display: clamp(2.75rem, 1.09rem + 7.4vw, 7rem);
+  --text-display--line-height: 1.03;
+  --text-h1: clamp(2.5rem, 1.33rem + 5.2vw, 5.5rem);
+  --text-h1--line-height: 1.05;
+  --text-h2: clamp(1.875rem, 1.24rem + 2.8vw, 3.5rem);
+  --text-h2--line-height: 1.1;
+  --text-h3: clamp(1.375rem, 1.16rem + 0.9vw, 1.875rem);
+  --text-h3--line-height: 1.2;
 }
 
 :root {
@@ -222,25 +234,6 @@
 @keyframes scroll-bounce {
   0%, 100% { transform: translateY(0); opacity: 1; }
   50% { transform: translateY(8px); opacity: 0.5; }
-}
-
-/* Text underline slide */
-.nav-link-underline {
-  position: relative;
-}
-.nav-link-underline::after {
-  content: "";
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--gold);
-  transition: width 0.3s ease;
-}
-.nav-link-underline:hover::after,
-.nav-link-underline.active::after {
-  width: 100%;
 }
 
 /* Glass effect */

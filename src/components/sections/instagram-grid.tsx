@@ -29,7 +29,7 @@ export function InstagramGrid() {
           <p className="text-xs font-medium tracking-[0.3em] uppercase text-primary mb-4">
             Follow Along
           </p>
-          <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-3">
+          <h2 className="font-heading text-h2 font-bold text-balance mb-3">
             <a
               href={siteConfig.social.instagram}
               target="_blank"

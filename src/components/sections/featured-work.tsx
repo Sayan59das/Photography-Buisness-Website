@@ -161,9 +161,9 @@ export function FeaturedWork() {
             <p className="text-xs font-medium tracking-[0.3em] uppercase text-primary mb-4">
               Portfolio
             </p>
-            <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-[1.05]">
-              Selected<br />
-              <span className="italic">Works</span>
+            <h2 className="font-heading text-h2 font-bold text-balance mb-4 leading-[1.05]">
+              A Closer Look<br />
+              <span className="italic">At Our Craft</span>
             </h2>
             <p className="text-muted-foreground text-lg max-w-md">
               A curated selection of our favorite stories, told through light,

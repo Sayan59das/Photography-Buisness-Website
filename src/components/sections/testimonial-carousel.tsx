@@ -115,7 +115,7 @@ export function TestimonialCarousel() {
           <p className="text-xs font-medium tracking-[0.3em] uppercase text-primary mb-4">
             Testimonials
           </p>
-          <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+          <h2 className="font-heading text-h2 font-bold text-balance mb-4">
             Kind <span className="italic">Words</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
@@ -228,12 +228,6 @@ export function TestimonialCarousel() {
                     />
                   ))}
                 </div>
-
-                {/* Counter */}
-                <span className="text-sm text-muted-foreground ml-auto">
-                  {String(current + 1).padStart(2, "0")} /{" "}
-                  {String(testimonials.length).padStart(2, "0")}
-                </span>
               </div>
             </div>
           </div>

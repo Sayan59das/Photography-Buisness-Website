@@ -43,7 +43,7 @@ export default function VideosPage() {
         <p className="text-xs font-medium tracking-[0.3em] uppercase text-primary mb-4">
           Cinematography
         </p>
-        <h1 className="font-heading text-5xl md:text-7xl lg:text-8xl font-bold mb-6">
+        <h1 className="font-heading text-h1 font-bold text-balance mb-6">
           Motion <span className="italic">Pictures</span>
         </h1>
         <p className="text-muted-foreground text-lg max-w-2xl mx-auto">

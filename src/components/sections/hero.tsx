@@ -131,7 +131,7 @@ export function Hero() {
     return () => clearInterval(interval)
   }, [])
 
-  const headlineWords = "Cinematic Stories for Modern Romantics".split(" ")
+  const headlineWords = "Your Story, Our Lens".split(" ")
 
   return (
     <section
@@ -184,7 +184,7 @@ export function Hero() {
         </motion.p>
 
         {/* Headline with word-by-word reveal */}
-        <h1 className="font-heading text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight mb-8 max-w-5xl leading-[0.95]">
+        <h1 className="font-heading text-display font-bold tracking-tight mb-8 max-w-5xl text-balance">
           {headlineWords.map((word, i) => (
             <motion.span
               key={i}
@@ -197,7 +197,7 @@ export function Hero() {
               }}
               className="inline-block mr-[0.3em]"
               style={
-                word === "Cinematic" || word === "Romantics"
+                word.replace(",", "") === "Story" || word === "Lens"
                   ? { fontStyle: "italic" }
                   : undefined
               }

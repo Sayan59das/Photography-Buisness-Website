@@ -33,7 +33,7 @@ export function Footer() {
             <p className="text-xs font-medium tracking-[0.3em] uppercase text-[#C9A24B] mb-4">
               Get in Touch
             </p>
-            <h2 className="font-heading text-4xl md:text-5xl font-bold text-white mb-4 leading-[1.1]">
+            <h2 className="font-heading text-4xl md:text-5xl font-bold text-balance text-white mb-4 leading-[1.1]">
               Let&rsquo;s Work{" "}
               <span className="italic text-[#C9A24B]">Together</span>
             </h2>

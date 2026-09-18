@@ -42,20 +42,6 @@ export function AboutTeaser() {
               </motion.div>
             </div>
 
-            {/* Floating accent card */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-              className="absolute -bottom-6 right-4 lg:-right-8 glass rounded-2xl px-6 py-5 shadow-xl max-w-[220px]"
-            >
-              <p className="text-3xl font-heading font-bold text-primary">10+</p>
-              <p className="text-sm text-muted-foreground mt-1">
-                Years of crafting visual stories
-              </p>
-            </motion.div>
-
             {/* Gold accent frame */}
             <div className="absolute -top-4 -left-4 w-32 h-32 border-l-2 border-t-2 border-primary/20 rounded-tl-3xl pointer-events-none" />
           </motion.div>
@@ -70,7 +56,7 @@ export function AboutTeaser() {
             <p className="text-xs font-medium tracking-[0.3em] uppercase text-primary mb-4">
               About the Studio
             </p>
-            <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-[1.1]">
+            <h2 className="font-heading text-h2 font-bold text-balance mb-6 leading-[1.1]">
               The Artist Behind<br />
               <span className="italic">the Lens</span>
             </h2>

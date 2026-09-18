@@ -150,7 +150,7 @@ export function ServicesTeaser() {
           <p className="text-xs font-medium tracking-[0.3em] uppercase text-primary mb-4">
             Services & Pricing
           </p>
-          <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-5">
+          <h2 className="font-heading text-h2 font-bold text-balance mb-5">
             Invest in <span className="italic">Memories</span>
           </h2>
           <p className="text-muted-foreground text-lg">

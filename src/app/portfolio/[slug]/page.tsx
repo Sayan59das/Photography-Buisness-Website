@@ -57,6 +57,7 @@ export default async function PortfolioDetailPage({ params }: { params: Promise<
           fill
           className="object-cover"
           priority
+          sizes="100vw"
         />
         <div className="absolute inset-0 bg-black/40" />
 
@@ -76,7 +77,7 @@ export default async function PortfolioDetailPage({ params }: { params: Promise<
           <span className="px-4 py-1.5 rounded-full text-xs font-semibold tracking-[0.2em] uppercase mb-6 bg-white/10 backdrop-blur-md border border-white/20">
             {shootDetails.category}
           </span>
-          <h1 className="font-heading text-5xl md:text-7xl lg:text-8xl font-bold text-center mb-6">
+          <h1 className="font-heading text-h1 font-bold text-balance text-center mb-6">
             {shootDetails.title}
           </h1>
           <div className="flex items-center gap-4 text-sm md:text-base text-white/80 font-medium">
@@ -108,6 +109,7 @@ export default async function PortfolioDetailPage({ params }: { params: Promise<
                 alt={`${shootDetails.title} photo ${i + 1}`}
                 width={800}
                 height={1200}
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
               />
             </div>

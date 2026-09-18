@@ -44,7 +44,7 @@ export default function BlogPage() {
         <p className="text-xs font-medium tracking-[0.3em] uppercase text-primary mb-4">
           Journal
         </p>
-        <h1 className="font-heading text-5xl md:text-7xl lg:text-8xl font-bold mb-6">
+        <h1 className="font-heading text-h1 font-bold text-balance mb-6">
           The <span className="italic">Blog</span>
         </h1>
         <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
@@ -67,6 +67,7 @@ export default function BlogPage() {
                   alt={post.title}
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
                 <div className="absolute top-4 left-4">
                   <span className="px-3 py-1 rounded-full text-[10px] font-semibold tracking-[0.15em] uppercase bg-white/90 text-black backdrop-blur-md">

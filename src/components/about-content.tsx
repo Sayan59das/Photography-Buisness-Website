@@ -39,7 +39,7 @@ export function AboutContent() {
         <p className="text-xs font-medium tracking-[0.3em] uppercase text-primary mb-4">
           Behind the Lens
         </p>
-        <h1 className="font-heading text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight">
+        <h1 className="font-heading text-h1 font-bold text-balance mb-6 leading-tight">
           Crafting <span className="italic">Timeless</span> Stories
         </h1>
       </motion.section>
@@ -58,7 +58,9 @@ export function AboutContent() {
               src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?q=80&w=2070&auto=format&fit=crop"
               alt="Photographer behind the scenes"
               fill
+              priority
               className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 50vw"
             />
           </motion.div>
 
@@ -69,7 +71,7 @@ export function AboutContent() {
             transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
             className="space-y-8"
           >
-            <h2 className="font-heading text-4xl md:text-5xl font-bold">
+            <h2 className="font-heading text-4xl md:text-5xl font-bold text-balance">
               More than just capturing moments, we preserve emotions.
             </h2>
             <div className="space-y-6 text-muted-foreground text-lg leading-relaxed">
@@ -101,7 +103,7 @@ export function AboutContent() {
       <section className="py-24 bg-muted/30">
         <div className="container mx-auto px-6 max-w-7xl">
           <motion.div {...fadeUp} className="text-center mb-16">
-            <h2 className="font-heading text-4xl md:text-5xl font-bold mb-4">Our Philosophy</h2>
+            <h2 className="font-heading text-4xl md:text-5xl font-bold text-balance mb-4">Our Philosophy</h2>
             <p className="text-muted-foreground">The principles that guide our craft.</p>
           </motion.div>
 
@@ -126,7 +128,7 @@ export function AboutContent() {
 
       {/* CTA */}
       <motion.section {...fadeUp} className="py-32 px-6 text-center">
-        <h2 className="font-heading text-4xl md:text-5xl font-bold mb-8">Ready to tell your story?</h2>
+        <h2 className="font-heading text-4xl md:text-5xl font-bold text-balance mb-8">Ready to tell your story?</h2>
         <Link
           href="/contact"
           className="inline-block px-10 py-4 bg-primary text-white rounded-full font-medium shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all hover:-translate-y-1"

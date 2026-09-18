@@ -67,7 +67,7 @@ export function WhyChooseUs() {
               <p className="text-xs font-medium tracking-[0.3em] uppercase text-primary mb-4">
                 Why Choose Us
               </p>
-              <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1]">
+              <h2 className="font-heading text-h2 font-bold text-balance leading-[1.1]">
                 What Sets Our<br />
                 <span className="italic">Work Apart</span>
               </h2>

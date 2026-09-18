@@ -66,7 +66,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             <span>•</span>
             <span>{post.date}</span>
           </div>
-          <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-8">
+          <h1 className="font-heading text-h2 font-bold text-balance leading-tight mb-8">
             {post.title}
           </h1>
           <div className="flex items-center gap-4">
@@ -90,6 +90,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             fill
             className="object-cover"
             priority
+            sizes="(min-width: 1152px) 1152px, 100vw"
           />
         </div>
       </div>

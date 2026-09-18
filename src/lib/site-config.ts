@@ -5,7 +5,7 @@ export const siteConfig = {
   name: "Shubham Photography",
   shortName: "Shubham",
   founder: "Shubham",
-  tagline: "Cinematic Stories for Modern Romantics",
+  tagline: "Your Story, Our Lens",
   description:
     "We capture the raw, authentic emotion of your most important days — wedding photography, pre-wedding shoots, editorial, and commercial work.",
   url: "https://shubhamphotography.com",
