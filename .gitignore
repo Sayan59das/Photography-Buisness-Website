@@ -24,6 +24,14 @@
 .DS_Store
 *.pem
 
+# raw camera originals (full-res, 10-45MB each) — optimized copies
+# used by the site live in public/images/
+/Images
+
+# raw video reels (30-85MB each) — compressed copies used by the
+# site live in public/videos/
+/Videos
+
 # debug
 npm-debug.log*
 yarn-debug.log*

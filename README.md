@@ -54,7 +54,6 @@ A premium, Awwwards-inspired photography studio website built with **Next.js 15*
 | **Hero** | Full-bleed crossfading image carousel, animated stats counter (500+ Weddings, 10+ Years, 50+ Awards), gold shimmer CTAs |
 | **Selected Works** | Asymmetric masonry portfolio grid with parallax, hover captions, and numbered indices |
 | **About Teaser** | Split layout with parallax portrait, floating glass stats card, and handwritten signature |
-| **Services** | Glassmorphism pricing cards with 3D tilt, gradient borders, bokeh particles, "Most Popular" shimmer badge |
 | **Testimonials** | Editorial split layout — large client photo + serif quote, auto-playing with crossfade transitions |
 | **Instagram Grid** | 6-photo responsive grid with hover overlays and staggered scroll reveal |
 | **CTA Banner** | Cinematic full-bleed parallax with bokeh overlay and gold shimmer text |
@@ -133,7 +132,6 @@ src/
 │   │   ├── hero.tsx              # Cinematic hero with crossfade carousel
 │   │   ├── featured-work.tsx     # Asymmetric masonry portfolio
 │   │   ├── about-teaser.tsx      # About section with parallax portrait
-│   │   ├── services-teaser.tsx   # Glassmorphism pricing cards
 │   │   ├── testimonial-carousel.tsx  # Editorial split testimonials
 │   │   ├── instagram-grid.tsx    # Social proof photo grid
 │   │   └── cta-banner.tsx        # Full-bleed CTA with bokeh

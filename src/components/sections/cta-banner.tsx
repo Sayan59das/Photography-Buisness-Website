@@ -110,7 +110,7 @@ export function CtaBanner() {
           className="font-heading text-h2 font-bold text-balance text-white mb-6 max-w-4xl mx-auto leading-[1.1]"
         >
           Let&rsquo;s Create Something{" "}
-          <span className="italic gold-shimmer-text">Beautiful</span>
+          <span className="italic text-primary">Beautiful</span>
         </motion.h2>
 
         <motion.p

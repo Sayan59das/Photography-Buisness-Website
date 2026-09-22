@@ -10,56 +10,13 @@ import { ChevronDown } from "lucide-react"
 import { useIsClient } from "@/lib/use-is-client"
 
 const heroImages = [
-  "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?q=80&w=2070&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1591604466107-ec97de577aff?q=80&w=2070&auto=format&fit=crop",
+  "/images/hero/architectural-silhouette.jpg",
+  "/images/hero/bridal-portrait.jpg",
+  "/images/hero/crowd-celebration.jpg",
+  "/images/hero/sangeet-dance.jpg",
+  "/images/hero/ring-moment.jpg",
+  "/images/hero/jaimala-ceremony.jpg",
 ]
-
-const stats = [
-  { value: 500, suffix: "+", label: "Weddings Captured" },
-  { value: 10, suffix: "+", label: "Years Experience" },
-  { value: 50, suffix: "+", label: "Awards Won" },
-]
-
-function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
-  const [count, setCount] = React.useState(0)
-  const ref = React.useRef<HTMLSpanElement>(null)
-  const hasAnimated = React.useRef(false)
-
-  React.useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasAnimated.current) {
-          hasAnimated.current = true
-          const duration = 2000
-          const steps = 60
-          const increment = value / steps
-          let current = 0
-          const timer = setInterval(() => {
-            current += increment
-            if (current >= value) {
-              setCount(value)
-              clearInterval(timer)
-            } else {
-              setCount(Math.floor(current))
-            }
-          }, duration / steps)
-        }
-      },
-      { threshold: 0.5 }
-    )
-
-    if (ref.current) observer.observe(ref.current)
-    return () => observer.disconnect()
-  }, [value])
-
-  return (
-    <span ref={ref}>
-      {count}
-      {suffix}
-    </span>
-  )
-}
 
 function generateParticles(count: number) {
   return Array.from({ length: count }).map(() => ({
@@ -243,30 +200,6 @@ export function Hero() {
           >
             Book a Consultation
           </Link>
-        </motion.div>
-
-        {/* Stats */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 2 }}
-          className="mt-16 flex items-center gap-8 md:gap-16"
-        >
-          {stats.map((stat, i) => (
-            <React.Fragment key={stat.label}>
-              {i > 0 && (
-                <div className="w-px h-10 bg-white/20" />
-              )}
-              <div className="text-center">
-                <p className="text-2xl md:text-3xl font-heading font-bold text-white">
-                  <AnimatedCounter value={stat.value} suffix={stat.suffix} />
-                </p>
-                <p className="text-xs text-white/50 tracking-wider uppercase mt-1">
-                  {stat.label}
-                </p>
-              </div>
-            </React.Fragment>
-          ))}
         </motion.div>
       </motion.div>
 

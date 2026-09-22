@@ -25,7 +25,7 @@ const testimonials = [
       "The team made us feel so comfortable in front of the camera. The cinematic quality of our engagement photos belongs in a magazine. We couldn't be happier!",
     rating: 5,
     imageUrl:
-      "https://images.unsplash.com/photo-1549416878-b9ca95e1bbab?q=80&w=1964&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1974&auto=format&fit=crop",
   },
   {
     id: 3,

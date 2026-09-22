@@ -140,26 +140,10 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/services"
-                  className="hover:text-[#C9A24B] transition-colors"
-                >
-                  Services & Pricing
-                </Link>
-              </li>
-              <li>
-                <Link
                   href="/videos"
                   className="hover:text-[#C9A24B] transition-colors"
                 >
                   Films
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/blog"
-                  className="hover:text-[#C9A24B] transition-colors"
-                >
-                  Journal
                 </Link>
               </li>
             </ul>

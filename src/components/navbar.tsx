@@ -8,16 +8,12 @@ import { Menu, X } from "lucide-react"
 
 import { Button, buttonVariants } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { ThemeToggle } from "@/components/theme-toggle"
 import { siteConfig } from "@/lib/site-config"
 
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/portfolio", label: "Portfolio" },
-  { href: "/services", label: "Services" },
-  { href: "/about", label: "About" },
   { href: "/videos", label: "Videos" },
-  { href: "/blog", label: "Blog" },
   { href: "/contact", label: "Contact" },
 ]
 
@@ -132,9 +128,6 @@ export function Navbar() {
           </ul>
 
           <div className="flex items-center gap-4">
-            <div className={cn(!isScrolled && "text-white [&_button]:text-white [&_button:hover]:bg-white/10")}>
-              <ThemeToggle />
-            </div>
             <Link
               href="/contact"
               className={cn(
@@ -149,7 +142,6 @@ export function Navbar() {
 
         {/* Mobile Toggle */}
         <div className={cn("flex items-center gap-3 lg:hidden z-50", !isScrolled && "text-white [&_button]:text-white [&_button:hover]:bg-white/10")}>
-          <ThemeToggle />
           <Button
             variant="ghost"
             size="icon"
