@@ -7,7 +7,7 @@ import { useSearchParams } from "next/navigation"
 import { ParallaxImageCard } from "@/components/parallax-image-card"
 import { portfolioShoots } from "@/lib/portfolio-data"
 
-const portfolioCategories = ["All", "Wedding", "Pre-Wedding", "Birthdays", "Ring-Ceremony"]
+const portfolioCategories = ["All", "Wedding", "Pre-Wedding", "Haldi", "Ring-Ceremony", "Portraits"]
 
 export function PortfolioContent() {
   const searchParams = useSearchParams()

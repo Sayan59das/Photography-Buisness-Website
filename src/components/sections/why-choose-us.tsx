@@ -45,8 +45,8 @@ export function WhyChooseUs() {
           >
             <div className="relative aspect-[4/5] rounded-3xl overflow-hidden">
               <FadeImage
-                src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=2070&auto=format&fit=crop"
-                alt="Bride and groom holding hands"
+                src="/images/hero/why-choose-us.jpg"
+                alt="A couple sharing an intimate embrace"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"

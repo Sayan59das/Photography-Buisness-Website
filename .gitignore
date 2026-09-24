@@ -32,6 +32,10 @@
 # site live in public/videos/
 /Videos
 
+# raw portfolio camera originals (4.3GB, 20-55MB each) — compressed
+# copies used by the site live in public/images/portfolio/
+/new photos
+
 # debug
 npm-debug.log*
 yarn-debug.log*
@@ -50,3 +54,6 @@ yarn-error.log*
 next-env.d.ts
 
 .vercel
+
+.vercel
+.env*.local

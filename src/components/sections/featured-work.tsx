@@ -5,57 +5,30 @@ import { motion } from "framer-motion"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { ParallaxImageCard } from "@/components/parallax-image-card"
+import { portfolioShoots } from "@/lib/portfolio-data"
 
-const featuredShoots = [
-  {
-    id: 1,
-    title: "Aura & James",
-    category: "Wedding",
-    image:
-      "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=2069&auto=format&fit=crop",
-    href: "/portfolio/aura-james",
-  },
-  {
-    id: 2,
-    title: "Golden Hour",
-    category: "Pre-Wedding",
-    image:
-      "https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1974&auto=format&fit=crop",
-    href: "/portfolio/golden-hour",
-  },
-  {
-    id: 3,
-    title: "Diamond Exchange",
-    category: "Ring-Ceremony",
-    image:
-      "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=2070&auto=format&fit=crop",
-    href: "/portfolio/ring-ceremony",
-  },
-  {
-    id: 4,
-    title: "Estate Wedding",
-    category: "Wedding",
-    image:
-      "https://images.unsplash.com/photo-1537368910025-700350fe46c7?q=80&w=2070&auto=format&fit=crop",
-    href: "/portfolio/estate-wedding",
-  },
-  {
-    id: 5,
-    title: "Sweet Sixteen",
-    category: "Birthdays",
-    image:
-      "https://images.unsplash.com/photo-1530103862676-de8892b12a15?q=80&w=2070&auto=format&fit=crop",
-    href: "/portfolio/sweet-sixteen",
-  },
-  {
-    id: 6,
-    title: "Tuscany Dreams",
-    category: "Pre-Wedding",
-    image:
-      "https://images.unsplash.com/photo-1519741347686-c1e0aadf4611?q=80&w=2070&auto=format&fit=crop",
-    href: "/portfolio/tuscany-dreams",
-  },
+// A curated slice of the real portfolio, kept in sync with
+// src/lib/portfolio-data.ts so this teaser never links to a shoot
+// that doesn't exist.
+const featuredSlugs = [
+  "vows-beneath-the-blooms",
+  "wandering-together",
+  "marigolds-and-laughter",
+  "henna-and-gold",
+  "quiet-moments-desert-light",
+  "a-getaway-romance",
 ]
+
+const featuredShoots = featuredSlugs
+  .map((slug) => portfolioShoots.find((shoot) => shoot.slug === slug))
+  .filter((shoot): shoot is NonNullable<typeof shoot> => Boolean(shoot))
+  .map((shoot) => ({
+    id: shoot.slug,
+    title: shoot.title,
+    category: shoot.category,
+    image: shoot.coverImage,
+    href: `/portfolio/${shoot.slug}`,
+  }))
 
 const gridStyles = [
   "md:col-span-2 md:row-span-2 aspect-[4/5]",

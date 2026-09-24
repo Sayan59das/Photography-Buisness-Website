@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils"
 import { siteConfig } from "@/lib/site-config"
 import { FadeImage } from "@/components/fade-image"
 import { portfolioShoots, getPortfolioShoot } from "@/lib/portfolio-data"
+import { portfolioImageDims } from "@/lib/portfolio-image-dims"
 
 export async function generateStaticParams() {
   return portfolioShoots.map((shoot) => ({ slug: shoot.slug }))
@@ -94,22 +95,25 @@ export default async function PortfolioDetailPage({ params }: { params: Promise<
       {/* Photo Gallery Grid */}
       <section className="px-4 md:px-6 lg:px-8 pb-24 max-w-[1600px] mx-auto">
         <div className="columns-1 md:columns-2 lg:columns-3 gap-4 md:gap-6 space-y-4 md:space-y-6">
-          {shoot.gallery.map((src, i) => (
-            <div
-              key={i}
-              className="relative w-full break-inside-avoid rounded-xl overflow-hidden group animate-in fade-in duration-700"
-              style={{ animationDelay: `${i * 100}ms`, animationFillMode: "backwards" }}
-            >
-              <FadeImage
-                src={src}
-                alt={`${shoot.title} photo ${i + 1}`}
-                width={800}
-                height={1200}
-                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-            </div>
-          ))}
+          {shoot.gallery.map((src, i) => {
+            const dims = portfolioImageDims[src] ?? { width: 800, height: 1200 }
+            return (
+              <div
+                key={i}
+                className="relative w-full break-inside-avoid rounded-xl overflow-hidden group animate-in fade-in duration-700"
+                style={{ animationDelay: `${(i % 6) * 80}ms`, animationFillMode: "backwards" }}
+              >
+                <FadeImage
+                  src={src}
+                  alt={`${shoot.title} photo ${i + 1}`}
+                  width={dims.width}
+                  height={dims.height}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+            )
+          })}
         </div>
       </section>
 
