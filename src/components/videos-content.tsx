@@ -273,9 +273,19 @@ export function VideosContent() {
   const [activeIndex, setActiveIndex] = React.useState<number | null>(null)
 
   const [currentSlide, setCurrentSlide] = React.useState(0)
+  // Only the current slide plus the one about to play are ever mounted, so
+  // the browser fetches one hero image at a time instead of all six at once.
+  // Starts with the next slide already queued so it's ready before its turn.
+  const [loadedSlides, setLoadedSlides] = React.useState(() => new Set([0, 1]))
+  const currentSlideRef = React.useRef(0)
   React.useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % heroSlides.length)
+      const next = (currentSlideRef.current + 1) % heroSlides.length
+      currentSlideRef.current = next
+      setCurrentSlide(next)
+      // Preload the slide after this one a full dwell-cycle ahead.
+      const preload = (next + 1) % heroSlides.length
+      setLoadedSlides((current) => (current.has(preload) ? current : new Set(current).add(preload)))
     }, 5000)
     return () => clearInterval(interval)
   }, [])
@@ -287,27 +297,29 @@ export function VideosContent() {
         ref={heroRef}
         className="relative min-h-[90svh] flex items-center w-full overflow-hidden -mt-20"
       >
-        {heroSlides.map((src, i) => (
-          <motion.div
-            key={src}
-            className="absolute inset-0 z-0"
-            initial={false}
-            animate={{
-              opacity: i === currentSlide ? 1 : 0,
-              scale: i === currentSlide ? 1.05 : 1,
-            }}
-            transition={{ opacity: { duration: 1.5 }, scale: { duration: 8 } }}
-          >
-            <Image
-              src={src}
-              alt="Behind the scenes of a wedding film"
-              fill
-              priority={i === 0}
-              className="object-cover"
-              sizes="100vw"
-            />
-          </motion.div>
-        ))}
+        {heroSlides.map((src, i) =>
+          loadedSlides.has(i) ? (
+            <motion.div
+              key={src}
+              className="absolute inset-0 z-0"
+              initial={false}
+              animate={{
+                opacity: i === currentSlide ? 1 : 0,
+                scale: i === currentSlide ? 1.05 : 1,
+              }}
+              transition={{ opacity: { duration: 1.5 }, scale: { duration: 8 } }}
+            >
+              <Image
+                src={src}
+                alt="Behind the scenes of a wedding film"
+                fill
+                priority={i === 0}
+                className="object-cover"
+                sizes="100vw"
+              />
+            </motion.div>
+          ) : null
+        )}
 
         <div className="absolute inset-0 z-[1] bg-gradient-to-b from-black/65 via-black/60 to-black/92" />
         <BokehField count={16} className="z-[2]" />

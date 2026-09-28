@@ -23,7 +23,7 @@ function QuoteBand() {
     <section ref={ref} className="relative py-32 md:py-40 overflow-hidden">
       <motion.div className="absolute inset-[-20%] z-0" style={{ y: bgY }}>
         <FadeImage
-          src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=2070&auto=format&fit=crop"
+          src="/images/stock/about-quote-bg.jpg"
           alt="Behind the scenes at a wedding shoot"
           fill
           className="object-cover"
@@ -135,7 +135,7 @@ export function AboutContent() {
             <div className="relative h-[500px] md:h-[600px] rounded-3xl overflow-hidden">
               <motion.div className="absolute inset-[-10%]" style={{ y: imgY }}>
                 <FadeImage
-                  src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?q=80&w=2070&auto=format&fit=crop"
+                  src="/images/stock/about-photographer.jpg"
                   alt="Photographer behind the scenes"
                   fill
                   priority

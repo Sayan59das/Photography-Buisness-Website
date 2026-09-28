@@ -14,8 +14,7 @@ const testimonials = [
     quote:
       "They didn't just take pictures; they captured the feeling of our wedding day. Looking through our album is like reliving the joy, the tears, and the love all over again.",
     rating: 5,
-    imageUrl:
-      "https://images.unsplash.com/photo-1523438885200-e635ba2c371e?q=80&w=1973&auto=format&fit=crop",
+    imageUrl: "/images/stock/testimonial-1.jpg",
   },
   {
     id: 2,
@@ -24,8 +23,7 @@ const testimonials = [
     quote:
       "The team made us feel so comfortable in front of the camera. The cinematic quality of our engagement photos belongs in a magazine. We couldn't be happier!",
     rating: 5,
-    imageUrl:
-      "https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1974&auto=format&fit=crop",
+    imageUrl: "/images/stock/testimonial-2.jpg",
   },
   {
     id: 3,
@@ -34,8 +32,7 @@ const testimonials = [
     quote:
       "Such a beautiful experience from start to finish. The attention to detail, lighting, and art direction was flawless. A memory we will cherish forever.",
     rating: 5,
-    imageUrl:
-      "https://images.unsplash.com/photo-1519741347686-c1e0aadf4611?q=80&w=1964&auto=format&fit=crop",
+    imageUrl: "/images/stock/testimonial-3.jpg",
   },
 ]
 

@@ -235,6 +235,39 @@
   0%, 100% { transform: translateY(0); opacity: 1; }
   50% { transform: translateY(8px); opacity: 0.5; }
 }
+.scroll-bounce {
+  animation: scroll-bounce 1.5s ease-in-out infinite;
+}
+
+/* Ambient bokeh particle — rises once per cycle then resets, while
+   opacity/scale breathe in and out. Driven by CSS custom properties so
+   each particle can be randomized without a per-frame JS animation loop. */
+@keyframes bokeh-rise {
+  0% { opacity: var(--bk-o-min, 0.2); transform: translateY(0) scale(1); }
+  50% { opacity: var(--bk-o-max, 0.6); transform: translateY(calc(-0.5 * var(--bk-rise, 40px))) scale(1.3); }
+  100% { opacity: var(--bk-o-min, 0.2); transform: translateY(calc(-1 * var(--bk-rise, 40px))) scale(1); }
+}
+.bokeh-particle {
+  position: absolute;
+  border-radius: 9999px;
+  animation: bokeh-rise var(--bk-duration, 6s) ease-in-out infinite;
+  animation-delay: var(--bk-delay, 0s);
+}
+
+/* Hero floating particle — rises, drifts sideways, and fades in/out once
+   per cycle before resetting, matching the ambient look without a
+   per-frame JS animation loop. */
+@keyframes particle-float {
+  0% { opacity: 0; transform: translate(0, 0) scale(0.5); }
+  50% { opacity: 1; transform: translate(var(--pf-dx, 20px), var(--pf-dy, -80px)) scale(1.5); }
+  100% { opacity: 0; transform: translate(calc(2 * var(--pf-dx, 20px)), calc(2 * var(--pf-dy, -80px))) scale(0.5); }
+}
+.hero-particle {
+  position: absolute;
+  border-radius: 9999px;
+  animation: particle-float var(--pf-duration, 5s) ease-in-out infinite;
+  animation-delay: var(--pf-delay, 0s);
+}
 
 /* Glass effect */
 .glass {

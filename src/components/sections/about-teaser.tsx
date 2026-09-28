@@ -33,7 +33,7 @@ export function AboutTeaser() {
             <div className="relative aspect-[3/4] rounded-3xl overflow-hidden">
               <motion.div className="absolute inset-[-10%]" style={{ y: imgY }}>
                 <FadeImage
-                  src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?q=80&w=2070&auto=format&fit=crop"
+                  src="/images/stock/about-photographer.jpg"
                   alt="The photographer"
                   fill
                   className="object-cover"

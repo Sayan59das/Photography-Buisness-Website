@@ -32,6 +32,11 @@ function generateParticles(count: number) {
   }))
 }
 
+/**
+ * Ambient floating particles. Animated with CSS (not per-frame JS via
+ * framer-motion) so 20 infinitely-looping particles cost nothing on the
+ * main thread once painted.
+ */
 function FloatingParticles() {
   const isClient = useIsClient()
   // Computed once per mount; only rendered after hydration so the random
@@ -43,28 +48,22 @@ function FloatingParticles() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none z-[1]">
       {particles.map((p, i) => (
-        <motion.div
+        <div
           key={i}
-          className="absolute rounded-full"
-          style={{
-            width: p.width,
-            height: p.height,
-            left: `${p.left}%`,
-            top: `${p.top}%`,
-            background: `radial-gradient(circle, rgba(201, 162, 75, ${p.opacity}), transparent)`,
-          }}
-          animate={{
-            y: [0, -p.riseBy],
-            x: [0, p.driftBy],
-            opacity: [0, 1, 0],
-            scale: [0.5, 1.5, 0.5],
-          }}
-          transition={{
-            duration: p.duration,
-            repeat: Infinity,
-            delay: p.delay,
-            ease: "easeInOut",
-          }}
+          className="hero-particle"
+          style={
+            {
+              width: p.width,
+              height: p.height,
+              left: `${p.left}%`,
+              top: `${p.top}%`,
+              background: `radial-gradient(circle, rgba(201, 162, 75, ${p.opacity}), transparent)`,
+              "--pf-dx": `${p.driftBy}px`,
+              "--pf-dy": `${-p.riseBy}px`,
+              "--pf-duration": `${p.duration}s`,
+              "--pf-delay": `${p.delay}s`,
+            } as React.CSSProperties
+          }
         />
       ))}
     </div>
@@ -73,6 +72,11 @@ function FloatingParticles() {
 
 export function Hero() {
   const [currentImage, setCurrentImage] = React.useState(0)
+  // Only the current slide plus the one about to play are ever mounted, so
+  // the browser fetches one hero image at a time instead of all six at once.
+  // Starts with the next slide already queued so it's ready before its turn.
+  const [loaded, setLoaded] = React.useState(() => new Set([0, 1]))
+  const currentRef = React.useRef(0)
   const sectionRef = React.useRef<HTMLElement>(null)
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -83,7 +87,12 @@ export function Hero() {
 
   React.useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentImage((prev) => (prev + 1) % heroImages.length)
+      const next = (currentRef.current + 1) % heroImages.length
+      currentRef.current = next
+      setCurrentImage(next)
+      // Preload the slide after this one a full dwell-cycle ahead.
+      const preload = (next + 1) % heroImages.length
+      setLoaded((current) => (current.has(preload) ? current : new Set(current).add(preload)))
     }, 5000)
     return () => clearInterval(interval)
   }, [])
@@ -95,28 +104,32 @@ export function Hero() {
       ref={sectionRef}
       className="relative min-h-[100svh] flex w-full overflow-hidden -mt-20"
     >
-      {/* Background Images with crossfade */}
-      {heroImages.map((src, i) => (
-        <motion.div
-          key={src}
-          className="absolute inset-0 z-0"
-          initial={false}
-          animate={{
-            opacity: i === currentImage ? 1 : 0,
-            scale: i === currentImage ? 1.05 : 1,
-          }}
-          transition={{ opacity: { duration: 1.5 }, scale: { duration: 8 } }}
-        >
-          <Image
-            src={src}
-            alt="Photography"
-            fill
-            priority={i === 0}
-            className="object-cover"
-            sizes="100vw"
-          />
-        </motion.div>
-      ))}
+      {/* Background Images with crossfade — only the current slide and the
+          one preloading next are ever mounted, so the browser fetches one
+          hero image at a time instead of all six on first paint. */}
+      {heroImages.map((src, i) =>
+        loaded.has(i) ? (
+          <motion.div
+            key={src}
+            className="absolute inset-0 z-0"
+            initial={false}
+            animate={{
+              opacity: i === currentImage ? 1 : 0,
+              scale: i === currentImage ? 1.05 : 1,
+            }}
+            transition={{ opacity: { duration: 1.5 }, scale: { duration: 8 } }}
+          >
+            <Image
+              src={src}
+              alt="Photography"
+              fill
+              priority={i === 0}
+              className="object-cover"
+              sizes="100vw"
+            />
+          </motion.div>
+        ) : null
+      )}
 
       {/* Dark overlay with gradient */}
       <div className="absolute inset-0 z-[1] bg-gradient-to-b from-black/50 via-black/30 to-black/70" />
@@ -214,12 +227,9 @@ export function Hero() {
         <span className="text-[10px] text-white/40 tracking-[0.3em] uppercase">
           Scroll
         </span>
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-        >
+        <div className="scroll-bounce">
           <ChevronDown className="h-4 w-4 text-white/40" />
-        </motion.div>
+        </div>
       </motion.div>
 
       {/* Image indicator dots */}
@@ -227,7 +237,11 @@ export function Hero() {
         {heroImages.map((_, i) => (
           <button
             key={i}
-            onClick={() => setCurrentImage(i)}
+            onClick={() => {
+              currentRef.current = i
+              setCurrentImage(i)
+              setLoaded((current) => (current.has(i) ? current : new Set(current).add(i)))
+            }}
             className={`transition-all duration-300 rounded-full ${
               i === currentImage
                 ? "w-8 h-2 bg-primary"
